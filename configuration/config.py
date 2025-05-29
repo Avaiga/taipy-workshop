@@ -17,10 +17,7 @@ The configuration is run by the Core service.
 
 from algorithms import *
 
-from taipy import Config
-
-from taipy.config import Config, Scope
-import datetime as dt
+from taipy import Config, Scope
 
 
 #Config.configure_job_executions(mode="standalone", nb_of_workers=2)

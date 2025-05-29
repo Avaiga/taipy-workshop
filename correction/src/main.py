@@ -13,7 +13,6 @@ from taipy.gui import Gui
 
 from configuration import scenario_cfg
 
-from taipy import Core
 from pages import *
 
 
@@ -26,18 +25,8 @@ pages = {
 
 
 if __name__ == "__main__":
-    core = Core()
-    core.run()
-    # #############################################################################
-    # PLACEHOLDER: Create and submit your scenario here                           #
-    #                                                                             #
-    # Example:                                                                    #
-    # from configuration import scenario_config                                   #
-    # scenario = tp.create_scenario(scenario_config)                              #
-    # scenario.submit()                                                           #
-    # Comment, remove or replace the previous lines with your own use case        #
-    # #############################################################################
+    tp.Orchestrator().run()
 
     gui = Gui(pages=pages)
-    gui.run(title="Sales Prediction", port=2452)
+    gui.run(title="Sales Prediction")
     
