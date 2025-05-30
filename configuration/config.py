@@ -22,13 +22,13 @@ from taipy import Config, Scope
 
 #Config.configure_job_executions(mode="standalone", nb_of_workers=2)
 path_to_data = "data/modified_supermarkt_sales_plus.csv"
-# TODO: we are going to configure all our data nodes into this config, start by configuring a csv data node
+# TODO: we are going to configure all our data nodes in this config, starting by configuring a csv data node
 #       for the initial_data_cfg using id `initial_data`, storage_type `csv`, path `path_to_data` and scope `Scope.GLOBAL`
 #       we'll use the `Config.configure_data_node` function for this
 initial_data_cfg = ...
 
-# TODO: do the same for holiday, level and date cfgs
-# storage_type = "csv"
+# TODO: next, we configure the remaining data nodes using the default configuration unless specified otherwise
+# use storage_type = "csv" for holiday_cfg
 holiday_cfg = ...
 # use default_data = 1 for level_cfg
 level_cfg = ...

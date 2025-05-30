@@ -30,14 +30,14 @@ data['Month_Year'] = data['Date'].dt.to_period('M').dt.to_timestamp()
 
 def create_perc_fig(df: pd.DataFrame, group_column: str) -> plotly.graph_objects.Figure:
     """This function creates a plotly Figure representing a bar plot, expressed in percentage.
-    Each bar represent, for a given time month and year (column Month_Year), the stacked percentage (of sales)
+    Each bar represents, for a given time month and year (column "Month_Year"), the stacked percentage (of sales)
     represented by each category of the `group_column` variable, represented with different colors.
 
     Parameters
     ----------
     df : pd.DataFrame
-        the dataframe containing three important variables for this function: `group_column`, `Month_Year`
-        and `Total` (monthly sales)
+        the dataframe containing three important column for this function: `group_column`, "Month_Year"
+        and "Total" (monthly sales)
     group_column : str
         the name of the grouping column
 
@@ -63,17 +63,21 @@ def on_change(state, var_name, var_value):
     To do this, we will follow these steps:
 
     If `var_name` is any of 'city', 'customer_type' or 'gender' (e.g. one of those variables has changed), then
-    create a variable `data` representing the filtered data (access it through `state.data`), filtered on several conditions:
+    create a variable `df` representing the filtered data (access it through `state.data`), filtered on several conditions:
     1. "City" column must be within the values of `state.city`
     2. "Customer_type" column must be within the values of `state.customer_type`
     3. "Gender" column must be within the values of `state.gender`
-    Finally, update all figures (state.product_line, state.city, state.gender, state.customer_type) to reflect that change.
+    Finally, update all figures (state.fig_product_line, state.fig_city, state.fig_gender, state.fig_customer_type) with
+    `df` to reflect that change.
     """
     pass
 
 
+customer_type_lov = data["Customer_type"].unique().tolist()
 customer_type = ["Normal", "Member"]
+gender_lov = data["Gender"].unique().tolist()
 gender = ["Male", "Female"]
+city_lov = data["City"].unique().tolist()
 city = ["Bangkok", "Chiang Mai", "Vientiane", "Luang Prabang"]
 
 Analysis = None

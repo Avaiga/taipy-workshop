@@ -1,7 +1,6 @@
 import pandas as pd
 import plotly.express as px
 import taipy.gui.builder as tgb
-import os
 
 
 # Load the dataset
