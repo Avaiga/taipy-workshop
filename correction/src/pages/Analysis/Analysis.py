@@ -30,8 +30,7 @@ data['Month_Year'] = data['Date'].dt.to_period('M').dt.to_timestamp()
 def create_perc_fig(df, group_column):
     # Group, sum, and convert to percentage
     df = df.groupby(['Month_Year', group_column])['Total'].sum().unstack(fill_value=0)
-    df = df.div(df.sum(axis=1), axis=0).reset_index().melt(id_vars='Month_Year', var_name=group_column, value_name='Percentage')
-    df['Percentage'] = (df.loc[:, 'Percentage'].round(3) * 100)
+    df = df.div(df.sum(axis=1), axis=0).multiply(100).round(1).melt(ignore_index=False, value_name='Percentage').reset_index()
     
     # Create and return the plot
     fig = px.bar(df, x='Month_Year', y='Percentage', color=group_column, title=f"Evolution of Sales by {group_column} over Time", labels={'Percentage': '% of Total'}, text_auto=True)
@@ -57,16 +56,19 @@ def on_change(state, var_name, var_value):
         state.fig_customer_type = create_perc_fig(data, 'Customer_type')
 
 
+customer_type_lov = data["Customer_type"].unique().tolist()
 customer_type = ["Normal", "Member"]
+gender_lov = data["Gender"].unique().tolist()
 gender = ["Male", "Female"]
+city_lov = data["City"].unique().tolist()
 city = ["Bangkok", "Chiang Mai", "Vientiane", "Luang Prabang"]
 
 
 with tgb.Page() as Analysis:   
     with tgb.layout(columns="1 1 1"):
-        tgb.selector(value="{customer_type}", lov=customer_type, multiple=True, dropdown=True, class_name="fullwidth", label="Customer Type")
-        tgb.selector(value="{gender}", lov=gender, multiple=True, dropdown=True, class_name="fullwidth", label="Gender")
-        tgb.selector(value="{city}", lov=city,  multiple=True, dropdown=True, class_name="fullwidth", label="City")
+        tgb.selector(value="{customer_type}", lov="{customer_type_lov}", multiple=True, dropdown=True, class_name="fullwidth", label="Customer Type")
+        tgb.selector(value="{gender}", lov="{gender_lov}", multiple=True, dropdown=True, class_name="fullwidth", label="Gender")
+        tgb.selector(value="{city}", lov="{city_lov}",  multiple=True, dropdown=True, class_name="fullwidth", label="City")
 
 
     with tgb.layout(columns="1 1"):

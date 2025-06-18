@@ -24,7 +24,9 @@ Go to pages `pages/Overview/Overview.py` and follow the instructions there. You 
 ## Visualizing the Overview page
 
 1. Go to `main.py` at the root of the project and:
+
     a. Import the `Overview.py` file
+
     b. Add the entry `"Overview": Overview` in first place in the `pages` dictionary
 
 2. Run `taipy run main.py` and take a look at your page!
@@ -38,6 +40,18 @@ This page will contain plots as well as selection widgets to filter the data.
 </p>
 
 Go to `pages/Analysis/Analysis.py` and follow the instructions there. You can find an example of how selectors work in Taipy in `examples/selector.py`
+
+## Visualizing the Analysis page
+
+1. Go to `main.py` at the root of the project and:
+
+    a. Import the `Analysis.py` file
+
+    b. Add the entry `"Analysis": Analysis` in second place in the `pages` dictionary
+
+2. Run `taipy run main.py` and take a look at your page
+
+3. Change the URL to `/Analysis` to see the Analysis page
 
 ## Creating a shared header for all pages
 
@@ -57,6 +71,8 @@ In this part, we will configure the following prediction pipeline:
 </p>
 
 Go to `configuration/config.py` and follow the instructions there to learn about data nodes, tasks and scenarios. You can find an example of how to create a prediction pipeline in `examples/config.py`
+
+Then, in `main.py`, import `scenario_cfg` from `configuration/config.py` so that the configuration is loaded when the application is run.
 
 You can then run `main.py` and interact with the predictions page to submit a scenario and see the results.
 

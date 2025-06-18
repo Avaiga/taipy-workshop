@@ -3,3 +3,4 @@ __pycache__
 user_data
 venv
 .vscode
+.venv*
